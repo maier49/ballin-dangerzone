@@ -21,7 +21,7 @@ public class Keying extends JPanel {
         currentLevel = new Level1(f, i);
     }
 
-         //test commmit
+         //test commit
     @SuppressWarnings("unused")
     public void paintComponent(Graphics g) {
 
