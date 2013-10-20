@@ -12,13 +12,12 @@ public class Keying extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private long time;
-    private double frameRate = 300;
+    private long frameRate = 300;
+    private long timeBetweenFrames = 1000/frameRate;
     Level currentLevel = null;
 
 
     public Keying(Display f, Images i) {
-        time = System.currentTimeMillis();
         currentLevel = new Level1(f, i);
 
     }
@@ -26,10 +25,14 @@ public class Keying extends JPanel {
 
     @SuppressWarnings("unused")
     public void paintComponent(Graphics g) {
-        if (System.currentTimeMillis() - time > (1000 / frameRate)) {
-            time = System.currentTimeMillis();
-            super.paintComponent(g);
-            currentLevel.paintComponent(g);
+
+
+        super.paintComponent(g);
+        currentLevel.paintComponent(g);
+        try {
+            Thread.sleep(timeBetweenFrames);
+        } catch (InterruptedException e) {
+            //who cares
         }
         repaint();
     }
