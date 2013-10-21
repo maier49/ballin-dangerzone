@@ -18,3 +18,4 @@ public interface Level {
     public void paintComponent(Graphics g);
 
 }
+

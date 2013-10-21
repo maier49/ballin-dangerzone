@@ -2,11 +2,11 @@ package com.Bench3.myGame;
 
 import com.Bench3.myGame.levels.Level;
 import com.Bench3.myGame.levels.Level1;
-
-import java.awt.*;
-import java.awt.event.*;
+import com.Bench3.myGame.gameState;
+import com.Bench3.myGame.levels.Level2;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Keying extends JPanel {
 
@@ -15,18 +15,24 @@ public class Keying extends JPanel {
     private long frameRate = 400;
     private long timeBetweenFrames = 1000/frameRate;
     Level currentLevel = null;
+    Display f = null;
+    Images i = null;
 
 
     public Keying(Display f, Images i) {
         currentLevel = new Level1(f, i);
+        this.f = f;
+        this.i = i;
+
     }
 
-         //test commit
-    //8============D
-    @SuppressWarnings("unused")
     public void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-            super.paintComponent(g);
+        if(gameState.level == 2){
+            currentLevel = new Level2(f, i);
+        }
+
             currentLevel.paintComponent(g);
         try {
             Thread.sleep(timeBetweenFrames);

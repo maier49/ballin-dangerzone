@@ -1,9 +1,8 @@
 package com.Bench3.myGame.levels;
 
-import com.Bench3.myGame.Display;
-import com.Bench3.myGame.Images;
-import com.Bench3.myGame.Keying;
-import com.Bench3.myGame.Main;
+
+import com.Bench3.myGame.*;
+import com.Bench3.myGame.gameState;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -421,6 +420,9 @@ public class Level1 implements Level {
     public void battle(Graphics g) {
 
         g.drawImage(Main.f.i.battleBg1, 144, 144, 512, 312, null);
+
+
+
         if (!m1Dead) {
             g.drawImage(Main.f.i.dragon1, r1.x, r1.y, 64, 64, null);
             g.setColor(Color.RED);
@@ -685,7 +687,9 @@ public class Level1 implements Level {
 
             //Draws BG image based on level
             if (level == 1) {
-                g.drawImage(Main.f.i.lvl1, 0, 0, 800, 600, null);
+               //g.drawImage(Main.f.i.lvl1, 0, 0, 800, 600, null);
+                g.drawImage(Main.f.i.lvl1, 0, 0, 50, 50, 0, 0, 50, 50, null);
+
             }
             if (level == 2) {
                 g.drawImage(Main.f.i.lvl2, 0, 0, 800, 600, null);
@@ -898,7 +902,8 @@ public class Level1 implements Level {
             if (stairsBottom.contains(pt4) || stairsBottom.contains(pt3)) {
                 down = false;
                 collision = true;
-                // Call level2?
+                gameState.level = 2;
+                System.out.println(gameState.level);
             }
 
             //RIGHT Collision
@@ -998,10 +1003,13 @@ public class Level1 implements Level {
 //		if(jumping) //JUMPING
 //			character.y--;
 
-            //************************
-            //* DRAW INVISIBLE WALLS *
-            //* ***********************
-		/*g.fillRect(topDoor.x, topDoor.y, topDoor.width, topDoor.height);
+
+
+	    //************************
+        //* DRAW INVISIBLE WALLS *
+        //************************
+        /*
+		g.fillRect(topDoor.x, topDoor.y, topDoor.width, topDoor.height);
 		g.fillRect(leftWall.x, leftWall.y, leftWall.width, leftWall.height);
 		g.fillRect(bottomWall.x, bottomWall.y, bottomWall.width, bottomWall.height);
 		g.fillRect(rightWall1.x, rightWall1.y, rightWall1.width, rightWall1.height);
@@ -1037,9 +1045,9 @@ public class Level1 implements Level {
 		g.fillRect(t3nr1.x, t3nr1.y, t3nr1.width, t3nr1.height);
 		g.fillRect(t3nr2.x, t3nr2.y, t3nr2.width, t3nr2.height);
 		g.fillRect(t3nt1.x, t3nt1.y, t3nt1.width, t3nt1.height);
-		g.fillRect(t3nt2.x, t3nt2.y, t3nt2.width, t3nt2.height); */
+		g.fillRect(t3nt2.x, t3nt2.y, t3nt2.width, t3nt2.height);
 
-		/*g.fillRect(t3HallwayTop.x, t3HallwayTop.y, t3HallwayTop.width, t3HallwayTop.height);
+		g.fillRect(t3HallwayTop.x, t3HallwayTop.y, t3HallwayTop.width, t3HallwayTop.height);
 		g.fillRect(t3HallwayBottom.x, t3HallwayBottom.y, t3HallwayBottom.width, t3HallwayBottom.height);
 		g.fillRect(nook1.x, nook1.y, nook1.width, nook1.height);
 		g.fillRect(nook2.x, nook2.y, nook2.width, nook2.height);
@@ -1060,7 +1068,8 @@ public class Level1 implements Level {
 		g.fillRect(t4Left.x, t4Left.y, t4Left.width, t4Left.height);
 		g.fillRect(t4Top.x, t4Top.y, t4Top.width, t4Top.height);
 		g.fillRect(t4Trigger.x, t4Trigger.y, t4Trigger.width, t4Trigger.height);
-		g.fillRect(t4TriggerN.x, t4TriggerN.y, t4TriggerN.width, t4TriggerN.height);*/
+		g.fillRect(t4TriggerN.x, t4TriggerN.y, t4TriggerN.width, t4TriggerN.height);
+		//*/
 
 
 
