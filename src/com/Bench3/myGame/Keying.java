@@ -31,6 +31,7 @@ public class Keying extends JPanel {
 
         if(gameState.level == 2){
             currentLevel = new Level2(f, i);
+            gameState.level = 0;
         }
 
             currentLevel.paintComponent(g);

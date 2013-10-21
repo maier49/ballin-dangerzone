@@ -7,13 +7,7 @@ import com.Bench3.myGame.gameState;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Bradley
- * Date: 10/20/13
- * Time: 4:23 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Level1 implements Level {
     public Rectangle character, battleChar;
     public Rectangle leftWall, bottomWall, rightWall1, topDoor;
@@ -26,7 +20,7 @@ public class Level1 implements Level {
     public Rectangle orLeft, orLeftTop, orRightTop1, orRightTop2, orRight1, orRight2;//or = Open Room
     public Rectangle p1, p2, p3, p4, m1, m2, m3, m4; //health = rectangle.width
     public Rectangle t3nr1, t3nr2, t3nt1, t3nt2, t3HallwayTop, t3HallwayBottom; //hallway
-    public Rectangle nook1, nook2, nook3, nook4, nook5, nook6, nook7, t4Bottom, t4n1, t4n2, t4n3, t4n4, tnook1, tnook2, tnook3, tnook4, t4Left, t4Top, t4Trigger, t4TriggerN;
+    public Rectangle nook1, nook2, nook3, nook4, nook5, nook6, nook7, t4Bottom, t4n1, t4n2, t4n3, t4n4, tnook1, tnook2, tnook3, tnook4, t4Left, t4Top, t4Trigger, t4TriggerN, t4Right;
     //Left and Right battle sprite positions(4)  //cursor positions (x,y)
     public Point l1, l2, l3, l4, r1, r2, r3, r4, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10;
 
@@ -98,6 +92,7 @@ public class Level1 implements Level {
         t4Top = new Rectangle(697, 127, 51, 1);
         t4Trigger = new Rectangle(747, 105, 25, 1);
         t4TriggerN = new Rectangle(747, 105, 1, 22);
+        t4Right = new Rectangle(773, 83, 1, 75);
 
 
         tnook1 = new Rectangle(597, 149, 1, 22);
@@ -684,11 +679,13 @@ public class Level1 implements Level {
     @Override
     public void paintComponent(Graphics g) {
             drawDown = true;
+           // gameState.level = 2;
 
             //Draws BG image based on level
             if (level == 1) {
+               drawBG(g);
                //g.drawImage(Main.f.i.lvl1, 0, 0, 800, 600, null);
-                g.drawImage(Main.f.i.lvl1, 0, 0, 50, 50, 0, 0, 50, 50, null);
+               //g.drawImage(Main.f.i.lvl1, 0, 0, 50, 50, 0, 0, 50, 50, null);
 
             }
             if (level == 2) {
@@ -706,6 +703,7 @@ public class Level1 implements Level {
             //****************
             if (drawDown) {
                 g.drawImage(Main.f.i.charDown, character.x, character.y, charW, charH, null);
+                g.drawImage(Main.f.i.BO, character.x-791, character.y-791, 1600, 1600, null);
             }
             if (drawLeft) {
                 g.drawImage(Main.f.i.charLeft, character.x, character.y, charW, charH, null);
@@ -788,6 +786,10 @@ public class Level1 implements Level {
                 collision = true;
             }
             if (t3nr1.contains(pt1) || t3nr1.contains(pt2)) {
+                up = false;
+                collision = true;
+            }
+            if (t4Trigger.contains(pt1) || t4Trigger.contains(pt2)) {
                 up = false;
                 collision = true;
             }
@@ -967,6 +969,10 @@ public class Level1 implements Level {
                 right = false;
                 collision = true;
             }
+        if (t4Right.contains(pt4) || t4Right.contains(pt2)) {
+            right = false;
+            collision = true;
+        }
 
             //******************
             //***** EVENTS *****
@@ -1069,9 +1075,16 @@ public class Level1 implements Level {
 		g.fillRect(t4Top.x, t4Top.y, t4Top.width, t4Top.height);
 		g.fillRect(t4Trigger.x, t4Trigger.y, t4Trigger.width, t4Trigger.height);
 		g.fillRect(t4TriggerN.x, t4TriggerN.y, t4TriggerN.width, t4TriggerN.height);
+		g.fillRect(t4Right.x, t4Right.y, t4Right.width, t4Right.height);
 		//*/
 
 
 
+
+    }
+
+    @Override
+    public void drawBG(Graphics g) {
+        g.drawImage(Main.f.i.lvl1, 0, 0, 800, 600, null);
     }
 }

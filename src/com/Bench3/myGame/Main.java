@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class Main {
     public static Display f = new Display();
-    public static int h = 608;
+    public static int h = 630;
     public static int w = 800;
     public static void main(String args[]){
         f.setSize(w, h);

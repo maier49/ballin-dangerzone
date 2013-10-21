@@ -16,6 +16,7 @@ public interface Level {
     public void battle(Graphics g);
     public void moveCharacter();
     public void paintComponent(Graphics g);
+    public void drawBG(Graphics g);
 
 }
 
