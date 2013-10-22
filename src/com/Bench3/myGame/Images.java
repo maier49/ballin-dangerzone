@@ -12,7 +12,7 @@ public class Images extends JPanel{
 
     public boolean imagesLoaded = false;
 
-    public Image lvl1, lvl2, select, tileset, BO, menuBG, cursor, attack, flee, charUp, charDown, charLeft, fight, items, magic, charRight, dragon1, dragon2, bmRight, wmRight, rmRight, battleBg1;
+    public Image lvl1, lvl2, select, tileset, tileset180, BO, menuBG, cursor, attack, flee, charUp, charDown, charLeft, fight, items, magic, charRight, dragon1, dragon2, bmRight, wmRight, rmRight, battleBg1;
 
     public Images(){
         this.setBackground(Color.black);
@@ -23,6 +23,7 @@ public class Images extends JPanel{
         lvl1      = new ImageIcon("src/imgs/lvl1.png").getImage();
         lvl2      = new ImageIcon("src/imgs/lvl2.png").getImage();
         tileset   = new ImageIcon("src/imgs/tileset.png").getImage();
+        tileset180= new ImageIcon("src/imgs/tileset180.png").getImage();
         charUp    = new ImageIcon("src/imgs/charUp.gif").getImage();
         charDown  = new ImageIcon("src/imgs/charDown.gif").getImage();
         charLeft  = new ImageIcon("src/imgs/charLeft.gif").getImage();
