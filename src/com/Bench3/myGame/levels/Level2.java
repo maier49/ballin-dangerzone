@@ -98,26 +98,25 @@ public class Level2 implements Level{
     public void paintComponent(Graphics g) {
                        drawDown = true;
             drawBG(g);
-            drawHouseYFront(g, 0, 0);
-            //drawSkinnyTree(g, 0, 2);
-            drawSkinnyTree(g, 4, 1);
-            drawHouseGFront(g, 5, 0);
-            //drawSkinnyTree(g, 9, 0);
-            //drawHouseFront(g, 11, 0);
-            //drawSkinnyTree(g, 9, 1);
-            //drawSkinnyTree(g, 9, 2);
+
+            for(int i = 0; i<6; i++){
+                drawForestTree(g, 0, i);
+            }
+             for(int i = 0; i<5; i++){
+                drawForestTree(g, 24, i);
+            }
+            drawHouseYFront(g, 1, 0);
+            drawSkinnyTree(g, 5, 1);
+            drawHouseGFront(g, 6, 0);
             for(int i = 0; i<3; i++){
-                drawNormBush(g, 9, i);
+                drawNormBush(g, 10, i);
             }
             for(int i = 0; i<3; i++){
-                drawNormBush(g, 15, i);
+                drawNormBush(g, 14, i);
             }
-            drawHouseBFront(g, 16, 0);
-            //drawSkinnyTree(g, 15, 0);
-            //drawSkinnyTree(g, 15, 1);
-            //drawSkinnyTree(g, 15, 2);
-            drawSkinnyTree(g, 20, 1);
-            drawHouseRFront(g, 21, 0);
+            drawHouseBFront(g, 15, 0);
+            drawSkinnyTree(g, 19, 1);
+            drawHouseRFront(g, 20, 0);
 
             drawHouseGBack(g, 0, 6);
             drawHouseRBack(g, 4, 6);
@@ -127,12 +126,39 @@ public class Level2 implements Level{
             drawHouseRFront(g, 0, 9);
             drawHouseYFront(g, 4, 9);
 
+            for(int i = 0; i<25; i++){
+                if(i == 17)
+                    i++;
+                drawForestTree(g, i, 15);
+            }
+            for(int i = 0; i<25; i++){
+                if(i == 14)
+                    i=18;
+                drawForestTree(g, i, 16);
+            }
+            for(int i = 0; i<25; i++){
+                if(i == 14)
+                    i++;
+                drawForestTree(g, i, 17);
+            }
 
             for(int i=0; i<6; i++){
                 drawFlowerBush(g, 16, 6+i);
             }
             for(int i=0; i<6; i++){
+                if(i==2)
+                    i+=2;
                 drawFlowerBush(g, 24, 6+i);
+            }
+            for(int i=0; i<7; i++){
+                if(i==2)
+                    i+=3;
+                drawFlowerBush(g, 17+i, 6);
+            }
+            for(int i=0; i<7; i++){
+                if(i==2)
+                    i+=3;
+                drawFlowerBush(g, 17+i, 11);
             }
 
 
@@ -239,6 +265,9 @@ public class Level2 implements Level{
     }
     public void drawSkinnyTree(Graphics g, int x, int y){
         g.drawImage(Main.f.i.tileset, (x*32),     (y)*32,   (x*32)+pixCo.SKINNY_TREE_WIDTH.value,     (y*32)+pixCo.SKINNY_TREE_HEIGHT.value, pixCo.SKINNY_TREE_TOP_X.value, pixCo.SKINNY_TREE_TOP_Y.value, pixCo.SKINNY_TREE_BOTTOM_X.value, pixCo.SKINNY_TREE_BOTTOM_Y.value, null);
+    }
+    public void drawForestTree(Graphics g, int x, int y){
+        g.drawImage(Main.f.i.tileset, (x*32),     (y)*32,   (x*32)+pixCo.FOREST_TREE_WIDTH.value,     (y*32)+pixCo.FOREST_TREE_HEIGHT.value, pixCo.FOREST_TREE_TOP_X.value, pixCo.FOREST_TREE_TOP_Y.value, pixCo.FOREST_TREE_BOTTOM_X.value, pixCo.FOREST_TREE_BOTTOM_Y.value, null);
     }
     public void drawFlowerBush(Graphics g, int x, int y){
         g.drawImage(Main.f.i.tileset, (x*32),     (y)*32,   (x*32)+pixCo.FLOWER_BUSH_WIDTH.value,     (y*32)+pixCo.FLOWER_BUSH_HEIGHT.value, pixCo.FLOWER_BUSH_TOP_X.value, pixCo.FLOWER_BUSH_TOP_Y.value, pixCo.FLOWER_BUSH_BOTTOM_X.value, pixCo.FLOWER_BUSH_BOTTOM_Y.value, null);
