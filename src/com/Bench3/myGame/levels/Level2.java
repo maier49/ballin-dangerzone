@@ -1,10 +1,14 @@
 package com.Bench3.myGame.levels;
 
 import com.Bench3.myGame.*;
+import com.sun.org.apache.xml.internal.utils.IntVector;
+import javafx.util.Pair;
 
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,15 +19,15 @@ import java.awt.event.*;
  */
 
 
-public class Level2 implements Level{
+public class Level2 extends BaseLevel{
     public boolean drawUp, drawLeft, drawRight, drawDown, up, left, right, down;
     public int charW = 18;
     public int charH = 18; //65
     //public int i = 0;
     //public int j = 0;
     public Rectangle character;
-
-
+    public ArrayList<Point> walls = loadWalls("src/wallFiles/level2.txt");
+    boolean drawTheWalls = true;
 
 
     public Level2(Display f, Images i) {
@@ -184,6 +188,29 @@ public class Level2 implements Level{
 
         moveCharacter();
 
+        if (drawTheWalls) {
+            drawWalls(g);
+        }
+
+    }
+
+    private void drawWalls(Graphics g) {
+        float thickness = 10;
+        Stroke oldStroke = null;
+        if (g instanceof Graphics2D) {
+            oldStroke = ((Graphics2D) g).getStroke();
+            ((Graphics2D) g).setStroke(new BasicStroke(thickness));
+        }
+
+
+        for (Point wall : walls) {
+            g.drawRect(wall.x * gameState.BLOCK_SIZE, wall.y * gameState.BLOCK_SIZE, gameState.BLOCK_SIZE, gameState.BLOCK_SIZE);
+        }
+
+        if (g instanceof Graphics2D) {
+            ((Graphics2D) g).setStroke(oldStroke);
+
+        }
     }
 
     @Override
@@ -280,14 +307,22 @@ public class Level2 implements Level{
     @Override
     public void moveCharacter() {
                              // RIGHT MOVE Right bound
-        if (right && (character.x != Main.w - charW))
+        if (right && (character.x != Main.w - charW)) {
             character.x += 1; // LEFT MOVE Left bound
-        if (left && (character.x >= 1))
+            if (detectCollisions(character, walls)) character.x -=1;
+        }
+        if (left && (character.x >= 1)) {
             character.x -= 1; // MOVE UP Upwards bound
-        if (up && (character.y >= 1))
+            if (detectCollisions(character, walls)) character.x +=1;
+        }
+        if (up && (character.y >= 1)) {
             character.y -= 1; // MOVE DOWN Downwards bound
-        if (down && (character.y != (Main.h)))
+            if (detectCollisions(character, walls)) character.y +=1;
+        }
+        if (down && (character.y != (Main.h))) {
             character.y += 1;
+            if (detectCollisions(character, walls)) character.y -=1;
+        }
 
     }
 

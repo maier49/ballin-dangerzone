@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Level1 implements Level {
+public class Level1 extends BaseLevel {
     public Rectangle character, battleChar;
     public Rectangle leftWall, bottomWall, rightWall1, topDoor;
     public Rectangle hallwayTop, nub1, nub2, hallwayNub1, hallwayNub2, hallwayNub3, hallwayNub4, hallwayNub5, hallwayNub6, hallwayNub7;

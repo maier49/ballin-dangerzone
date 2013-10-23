@@ -11,4 +11,5 @@ public class gameState {
     public static int level = 1;
     public static int j = 0;
     public static boolean drawBG = false;
+    public static int BLOCK_SIZE = 32;
 }
