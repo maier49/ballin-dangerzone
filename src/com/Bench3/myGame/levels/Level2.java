@@ -32,7 +32,7 @@ public class Level2 extends BaseLevel{
 
     public Level2(Display f, Images i) {
 
-        character = new Rectangle(400, 0, charW, charH);
+        character = new Rectangle(390, 0, charW, charH);
 
         //***********************
         //** KEYMAPPING/MOVING **
@@ -69,8 +69,8 @@ public class Level2 extends BaseLevel{
                     drawLeft = false;
                 }// Reset (Esc)
                 if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                    character.x = 50;
-                    character.y = 88;
+                    character.x = 390;
+                    character.y = 0;
 
                 }
 
@@ -106,7 +106,7 @@ public class Level2 extends BaseLevel{
             for(int i = 0; i<6; i++){
                 drawForestTree(g, 0, i);
             }
-             for(int i = 0; i<5; i++){
+            for(int i = 0; i<5; i++){
                 drawForestTree(g, 24, i);
             }
             drawHouseYFront(g, 1, 0);
@@ -195,7 +195,7 @@ public class Level2 extends BaseLevel{
     }
 
     private void drawWalls(Graphics g) {
-        float thickness = 10;
+        float thickness = 1;
         Stroke oldStroke = null;
         if (g instanceof Graphics2D) {
             oldStroke = ((Graphics2D) g).getStroke();
@@ -204,7 +204,9 @@ public class Level2 extends BaseLevel{
 
 
         for (Point wall : walls) {
-            g.drawRect(wall.x * gameState.BLOCK_SIZE, wall.y * gameState.BLOCK_SIZE, gameState.BLOCK_SIZE, gameState.BLOCK_SIZE);
+            //g.drawRect(wall.x * gameState.BLOCK_SIZE, wall.y * gameState.BLOCK_SIZE, gameState.BLOCK_SIZE, gameState.BLOCK_SIZE);
+            //g.drawRect(wall.x * gameState.BLOCK_SIZE, wall.y * gameState.BLOCK_SIZE, gameState.BLOCK_SIZE-(int) thickness-1, gameState.BLOCK_SIZE-(int) thickness-1);
+
         }
 
         if (g instanceof Graphics2D) {
@@ -231,8 +233,8 @@ public class Level2 extends BaseLevel{
     public void drawHouseYFront(Graphics g, int x, int y){
         g.drawImage(Main.f.i.tileset, (x)*32,     (y)*32,     ((x)+4)*32,     ((y)+2)*32, pixCo.YELLOW_ROOF_TOP_X.value, pixCo.YELLOW_ROOF_TOP_Y.value, pixCo.YELLOW_ROOF_BOTTOM_X.value, pixCo.YELLOW_ROOF_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, ((x)*32),     ((y)+2)*32,   ((x)+4)*32,     ((y)+3)*32, pixCo.WOOD_WALL_TOP_X.value, pixCo.WOOD_WALL_TOP_Y.value, pixCo.WOOD_WALL_BOTTOM_X.value, pixCo.WOOD_WALL_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, (((x+2)*32)-12), ((y+2)*32+4), ((x+2)*32-12)+pixCo.WOOD_DOOR_HEIGHT.value, ((y+2)*32)+10+pixCo.WOOD_DOOR_WIDTH.value, pixCo.WOOD_DOOR_TOP_X.value, pixCo.WOOD_DOOR_TOP_Y.value, pixCo.WOOD_DOOR_BOTTOM_X.value, pixCo.WOOD_DOOR_BOTTOM_Y.value, null);
     }
 
@@ -246,8 +248,8 @@ public class Level2 extends BaseLevel{
         g.drawImage(Main.f.i.tileset, ((x+2)*32),     ((y)+1)*32,   ((x)+4)*32,     ((y)+3)*32, pixCo.WOOD_WALL2_TOP_X.value, pixCo.WOOD_WALL2_TOP_Y.value, pixCo.WOOD_WALL2_BOTTOM_X.value, pixCo.WOOD_WALL2_BOTTOM_Y.value, null);
 
         g.drawImage(Main.f.i.tileset, (x)*32,     (y)*32,     ((x)+4)*32,     ((y)+2)*32, pixCo.RED_ROOF_TOP_X.value, pixCo.RED_ROOF_TOP_Y.value, pixCo.RED_ROOF_BOTTOM_X.value, pixCo.RED_ROOF_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, (((x+2)*32)-12), ((y+2)*32+2), ((x+2)*32-12)+pixCo.OPEN_DOOR_HEIGHT.value, ((y+2)*32)+8+pixCo.OPEN_DOOR_WIDTH.value, pixCo.OPEN_DOOR_TOP_X.value, pixCo.OPEN_DOOR_TOP_Y.value, pixCo.OPEN_DOOR_BOTTOM_X.value, pixCo.OPEN_DOOR_BOTTOM_Y.value, null);
     }
 
@@ -260,8 +262,8 @@ public class Level2 extends BaseLevel{
     public void drawHouseBFront(Graphics g, int x, int y){
         g.drawImage(Main.f.i.tileset, (x)*32,     (y)*32,     ((x)+4)*32,     ((y)+2)*32, pixCo.BLUE_ROOF_TOP_X.value, pixCo.BLUE_ROOF_TOP_Y.value, pixCo.BLUE_ROOF_BOTTOM_X.value, pixCo.BLUE_ROOF_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, ((x)*32),     ((y)+2)*32,   ((x)+4)*32,     ((y)+3)*32, pixCo.STONE_WALL_TOP_X.value, pixCo.STONE_WALL_TOP_Y.value, pixCo.STONE_WALL_BOTTOM_X.value, pixCo.STONE_WALL_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, (((x+2)*32)-12), ((y+2)*32+4), ((x+2)*32-12)+pixCo.WOOD_DOOR_HEIGHT.value, ((y+2)*32)+10+pixCo.WOOD_DOOR_WIDTH.value, pixCo.WOOD_DOOR_TOP_X.value, pixCo.WOOD_DOOR_TOP_Y.value, pixCo.WOOD_DOOR_BOTTOM_X.value, pixCo.WOOD_DOOR_BOTTOM_Y.value, null);
     }
 
@@ -273,8 +275,8 @@ public class Level2 extends BaseLevel{
     public void drawHouseGFront(Graphics g, int x, int y){
         g.drawImage(Main.f.i.tileset, (x)*32,     (y)*32,     ((x)+4)*32,     ((y)+2)*32, pixCo.GREEN_ROOF_TOP_X.value, pixCo.GREEN_ROOF_TOP_Y.value, pixCo.GREEN_ROOF_BOTTOM_X.value, pixCo.GREEN_ROOF_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, ((x)*32),     ((y)+2)*32,   ((x)+4)*32,     ((y)+3)*32, pixCo.WOOD_WALL_TOP_X.value, pixCo.WOOD_WALL_TOP_Y.value, pixCo.WOOD_WALL_BOTTOM_X.value, pixCo.WOOD_WALL_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
-        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOW_TOP_X.value, pixCo.WOOD_WINDOW_TOP_Y.value, pixCo.WOOD_WINDOW_BOTTOM_X.value, pixCo.WOOD_WINDOW_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, (x*32)+16, (y*32)+70,     (x*32)+34,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+2)*32)+30, (y*32)+70,     ((x+2)*32)+48,   (y*32)+88, pixCo.WOOD_WINDOWS_TOP_X.value, pixCo.WOOD_WINDOWS_TOP_Y.value, pixCo.WOOD_WINDOWS_BOTTOM_X.value, pixCo.WOOD_WINDOWS_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, (((x+2)*32)-12), ((y+2)*32+4), ((x+2)*32-12)+pixCo.WOOD_DOOR_HEIGHT.value, ((y+2)*32)+10+pixCo.WOOD_DOOR_WIDTH.value, pixCo.WOOD_DOOR_TOP_X.value, pixCo.WOOD_DOOR_TOP_Y.value, pixCo.WOOD_DOOR_BOTTOM_X.value, pixCo.WOOD_DOOR_BOTTOM_Y.value, null);
     }
 
@@ -288,6 +290,11 @@ public class Level2 extends BaseLevel{
         g.drawImage(Main.f.i.tileset, (x)*32,     (y)*32,     ((x)+4)*32+1,     ((y)+3)*32, pixCo.GRAY_ROOF_TOP_X.value, pixCo.GRAY_ROOF_TOP_Y.value, pixCo.GRAY_ROOF_BOTTOM_X.value, pixCo.GRAY_ROOF_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, (x+4)*32-1,     (y)*32,     ((x)+8)*32,     ((y)+3)*32, pixCo.GRAY_ROOF_TOP_X.value+1, pixCo.GRAY_ROOF_TOP_Y.value, pixCo.GRAY_ROOF_BOTTOM_X.value, pixCo.GRAY_ROOF_BOTTOM_Y.value, null);
         g.drawImage(Main.f.i.tileset, (x+4)*32-14,     (y+5)*32,     ((x)+3)*32+pixCo.DOUBLE_DOOR_WIDTH.value+10,     ((y+5))*32+pixCo.DOUBLE_DOOR_HEIGHT.value, pixCo.DOUBLE_DOOR_TOP_X.value, pixCo.DOUBLE_DOOR_TOP_Y.value, pixCo.DOUBLE_DOOR_BOTTOM_X.value, pixCo.DOUBLE_DOOR_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, (x+3)*32+15,     (y+4)*32+5,     ((x+3))*32+pixCo.SIGN_INN_WIDTH.value+15,     ((y+4))*32+pixCo.SIGN_INN_HEIGHT.value+5, pixCo.SIGN_INN_TOP_X.value, pixCo.SIGN_INN_TOP_Y.value, pixCo.SIGN_INN_BOTTOM_X.value, pixCo.SIGN_INN_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+1)*32), ((y+5)*32)-11,     ((x+2)*32),   ((y+6)*32)-11, pixCo.WOOD_WINDOWL_TOP_X.value, pixCo.WOOD_WINDOWL_TOP_Y.value, pixCo.WOOD_WINDOWL_BOTTOM_X.value, pixCo.WOOD_WINDOWL_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+6)*32), ((y+5)*32)-11,     ((x+7)*32),   ((y+6)*32)-11, pixCo.WOOD_WINDOWL_TOP_X.value, pixCo.WOOD_WINDOWL_TOP_Y.value, pixCo.WOOD_WINDOWL_BOTTOM_X.value, pixCo.WOOD_WINDOWL_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+1)*32), ((y+3)*32)+6,     ((x+2)*32),   ((y+4)*32)+6, pixCo.WOOD_WINDOWL_TOP_X.value, pixCo.WOOD_WINDOWL_TOP_Y.value, pixCo.WOOD_WINDOWL_BOTTOM_X.value, pixCo.WOOD_WINDOWL_BOTTOM_Y.value, null);
+        g.drawImage(Main.f.i.tileset, ((x+6)*32), ((y+3)*32)+6,     ((x+7)*32),   ((y+4)*32)+6, pixCo.WOOD_WINDOWL_TOP_X.value, pixCo.WOOD_WINDOWL_TOP_Y.value, pixCo.WOOD_WINDOWL_BOTTOM_X.value, pixCo.WOOD_WINDOWL_BOTTOM_Y.value, null);
 
     }
     public void drawSkinnyTree(Graphics g, int x, int y){

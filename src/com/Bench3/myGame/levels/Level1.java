@@ -679,7 +679,7 @@ public class Level1 extends BaseLevel {
     @Override
     public void paintComponent(Graphics g) {
             drawDown = true;
-            gameState.level = 2;
+            gameState.level = 1;
 
             //Draws BG image based on level
             if (level == 1) {
