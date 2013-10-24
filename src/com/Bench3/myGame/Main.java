@@ -18,3 +18,14 @@ public class Main {
 
     }
 }
+//****************
+//*****TO  DO*****
+//****************
+//Enemy battle AI
+//Move doors of houses
+//add event for entering inn
+//create map for inn
+//get pixel co-ords for indoor tiles
+//Add event to go back to level one
+//create event and map for south exit(forest)
+//create event and map for right exit
