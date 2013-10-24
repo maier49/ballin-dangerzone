@@ -46,7 +46,14 @@ public class Level1 extends BaseLevel {
         select = 0;
         //TILE HEIGHT = 22
         //TILE WIDTH  = 26
+        if(gameState.level == 1){
         character = new Rectangle(50, 88, charW, charH);
+        drawDown = true;
+        }
+        if(gameState.level == 3){
+        character = new Rectangle(423, 524, charW, charH);
+        drawUp = true;
+        }
         battleChar = new Rectangle(235, 225, 32, 32);
         //Declare Rectangles        X    Y    W    H
         topDoor = new Rectangle(20, 82, 75, 1);
@@ -678,8 +685,9 @@ public class Level1 extends BaseLevel {
 
     @Override
     public void paintComponent(Graphics g) {
-            drawDown = true;
-            gameState.level = 1;
+
+            if(gameState.level ==1)
+            gameState.level = 2;
 
             //Draws BG image based on level
             if (level == 1) {
@@ -707,12 +715,15 @@ public class Level1 extends BaseLevel {
             }
             if (drawLeft) {
                 g.drawImage(Main.f.i.charLeft, character.x, character.y, charW, charH, null);
+                g.drawImage(Main.f.i.BO, character.x-791, character.y-791, 1600, 1600, null);
             }
             if (drawRight) {
                 g.drawImage(Main.f.i.charRight, character.x, character.y, charW, charH, null);
+                g.drawImage(Main.f.i.BO, character.x-791, character.y-791, 1600, 1600, null);
             }
             if (drawUp) {
                 g.drawImage(Main.f.i.charUp, character.x, character.y, charW, charH, null);
+                g.drawImage(Main.f.i.BO, character.x-791, character.y-791, 1600, 1600, null);
             }
 
             //************************
