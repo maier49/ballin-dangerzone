@@ -19,24 +19,21 @@ import java.util.Vector;
  */
 
 
-public class Level2 extends BaseLevel{
+public class Level0 extends BaseLevel{
     public boolean drawUp, drawLeft, drawRight, drawDown, up, left, right, down;
     public int charW = 18;
     public int charH = 18; //65
     //public int i = 0;
     //public int j = 0;
-    public Rectangle character, northExit, rightExit, southExit, innExit;
-    public ArrayList<Point> walls = loadWalls("src/wallFiles/level2.txt");
+    public Rectangle character, northExit, rightExit, southExit;
+    public ArrayList<Point> walls = loadWalls("src/wallFiles/level0.txt");
     boolean drawTheWalls = true;
 
 
-    public Level2(Display f, Images i) {
+    public Level0(Display f, Images i) {
 
         character = new Rectangle(390, 2, charW, charH);
-        northExit = new Rectangle(345, 0, 105, 1);
-        southExit = new Rectangle(448, 607, 32, 1);
-        innExit   = new Rectangle(370, 385, 24, 1);
-        rightExit = new Rectangle(799, 252, 1, 68);
+        southExit = new Rectangle(345, 600, 105, 1);
 
         //***********************
         //** KEYMAPPING/MOVING **
@@ -104,9 +101,21 @@ public class Level2 extends BaseLevel{
 
 
     public void paintComponent(Graphics g) {
-                       drawDown = true;
-            drawBG(g);
-        g.setColor(Color.WHITE);
+        drawDown = true;
+        drawBG(g);
+
+
+
+
+        //**********************
+        //** NORTH EXIT EVENT **
+        //**********************
+        if (southExit.contains(character.x,character.y) || southExit.contains(character.x+character.width,character.y+character.height)) {
+            down = false;
+            character.y++;
+            gameState.level=1;
+        }
+
 
         //* DRAW SPRITES *
         //****************
@@ -125,116 +134,6 @@ public class Level2 extends BaseLevel{
         }
 
         moveCharacter();
-
-
-        for(int i = 0; i<6; i++){
-                drawForestTree(g, 0, i);
-            }
-            for(int i = 0; i<5; i++){
-                drawForestTree(g, 24, i);
-            }
-            drawHouseYFront(g, 1, 0, false);
-            drawSkinnyTree(g, 5, 1);
-            drawHouseGFront(g, 6, 0, true);
-            for(int i = 0; i<3; i++){
-                drawNormBush(g, 10, i);
-            }
-            for(int i = 0; i<3; i++){
-                drawNormBush(g, 14, i);
-            }
-            drawHouseBFront(g, 15, 0, false);
-            drawSkinnyTree(g, 19, 1);
-            drawHouseRFront(g, 20, 0, false);
-
-            drawHouseGBack(g, 0, 6);
-            drawHouseRBack(g, 4, 6);
-            drawInnFront(g, 8, 6, true);
-
-
-            drawHouseRFront(g, 0, 9, true);
-            drawHouseYFront(g, 4, 9, false);
-
-            for(int i = 0; i<25; i++){
-                if(i == 17)
-                    i++;
-                drawForestTree(g, i, 15);
-            }
-            for(int i = 0; i<25; i++){
-                if(i == 14)
-                    i=18;
-                drawForestTree(g, i, 16);
-            }
-            for(int i = 0; i<25; i++){
-                if(i == 14)
-                    i++;
-                drawForestTree(g, i, 17);
-            }
-
-            for(int i=0; i<6; i++){
-                drawFlowerBush(g, 16, 6+i);
-            }
-            for(int i=0; i<6; i++){
-                if(i==2)
-                    i+=2;
-                drawFlowerBush(g, 24, 6+i);
-            }
-            for(int i=0; i<7; i++){
-                if(i==2)
-                    i+=3;
-                drawFlowerBush(g, 17+i, 6);
-            }
-            for(int i=0; i<7; i++){
-                if(i==2)
-                    i+=3;
-                drawFlowerBush(g, 17+i, 11);
-            }
-
-        g.fillRect(southExit.x, southExit.y, southExit.width, southExit.height);
-        g.fillRect(rightExit.x, rightExit.y, rightExit.width, rightExit.height);
-
-        g.fillRect(innExit.x, innExit.y, innExit.width, innExit.height);
-
-
-
-        //**********************
-        //** NORTH EXIT EVENT **
-        //**********************
-        if (northExit.contains(character.x,character.y) || northExit.contains(character.x+character.width,character.y+character.height)) {
-            up = false;
-            //System.out.println("boop");
-            character.y++;
-            gameState.level=2;
-        }
-        //**********************
-        //** SOUTH EXIT EVENT **
-        //**********************
-        if (southExit.contains(character.x,character.y) || southExit.contains(character.x+character.width,character.y+character.height)) {
-            down = false;
-            //System.out.println("boop");
-            character.y--;
-            gameState.level=2;
-        }
-        //**********************
-        //** RIGHT EXIT EVENT **
-        //**********************
-        if (rightExit.contains(character.x,character.y) || rightExit.contains(character.x+character.width,character.y+character.height)) {
-            right = false;
-            //System.out.println("boop");
-            character.x--;
-            gameState.level=2;
-        }
-        //********************
-        //** INN EXIT EVENT **
-        //********************
-        if (innExit.contains(character.x,character.y) || innExit.contains(character.x+character.width,character.y+character.height)) {
-            up = false;
-            character.y++;
-            gameState.level=4;
-        }
-
-
-
-
 
         if (drawTheWalls) {
             drawWalls(g);
@@ -284,6 +183,7 @@ public class Level2 extends BaseLevel{
         g.drawImage(Main.f.i.tileset, (((x+2)*32)-12), ((y+2)*32+4), ((x+2)*32-12)+pixCo.WOOD_DOOR_HEIGHT.value, ((y+2)*32)+10+pixCo.WOOD_DOOR_WIDTH.value, pixCo.WOOD_DOOR_TOP_X.value, pixCo.WOOD_DOOR_TOP_Y.value, pixCo.WOOD_DOOR_BOTTOM_X.value, pixCo.WOOD_DOOR_BOTTOM_Y.value, null);
         if(chimney)
             g.drawImage(Main.f.i.tileset, ((x)*32), ((y)*32), ((x+1)*32), ((y+1)*32), pixCo.CHIMNEY_TOP_X.value, pixCo.CHIMNEY_TOP_Y.value, pixCo.CHIMNEY_BOTTOM_X.value, pixCo.CHIMNEY_BOTTOM_Y.value, null);
+
     }
 
     public void drawHouseYBack(Graphics g, int x, int y){
@@ -300,6 +200,8 @@ public class Level2 extends BaseLevel{
         g.drawImage(Main.f.i.tileset, (((x+2)*32)-12), ((y+2)*32+2), ((x+2)*32-12)+pixCo.OPEN_DOOR_HEIGHT.value, ((y+2)*32)+8+pixCo.OPEN_DOOR_WIDTH.value, pixCo.OPEN_DOOR_TOP_X.value, pixCo.OPEN_DOOR_TOP_Y.value, pixCo.OPEN_DOOR_BOTTOM_X.value, pixCo.OPEN_DOOR_BOTTOM_Y.value, null);
         if(chimney)
             g.drawImage(Main.f.i.tileset, ((x)*32), ((y)*32), ((x+1)*32), ((y+1)*32), pixCo.CHIMNEY_TOP_X.value, pixCo.CHIMNEY_TOP_Y.value, pixCo.CHIMNEY_BOTTOM_X.value, pixCo.CHIMNEY_BOTTOM_Y.value, null);
+
+
     }
 
     public void drawHouseRBack(Graphics g, int x, int y){
@@ -373,7 +275,7 @@ public class Level2 extends BaseLevel{
 
     @Override
     public void moveCharacter() {
-                             // RIGHT MOVE Right bound
+        // RIGHT MOVE Right bound
         if (right && (character.x != Main.w - charW)) {
             character.x += 1; // LEFT MOVE Left bound
             if (detectCollisions(character, walls)) character.x -=1;

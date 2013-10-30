@@ -1,9 +1,7 @@
 package com.Bench3.myGame;
 
-import com.Bench3.myGame.levels.Level;
-import com.Bench3.myGame.levels.Level1;
+import com.Bench3.myGame.levels.*;
 import com.Bench3.myGame.gameState;
-import com.Bench3.myGame.levels.Level2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +18,11 @@ public class Keying extends JPanel {
 
 
     public Keying(Display f, Images i) {
-        currentLevel = new Level1(f, i);
+
+        //********************
+        //** STARTING LEVEL **
+        //********************
+        currentLevel = new Level0(f, i);
         this.f = f;
         this.i = i;
 
@@ -29,14 +31,26 @@ public class Keying extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        if(gameState.level == 0){
+            currentLevel = new Level0(f, i);
+            gameState.level = -1;
+        }
+        if(gameState.level == 1){
+            currentLevel = new Level1(f, i);
+            gameState.level = -1;
+        }
         if(gameState.level == 3){
             currentLevel = new Level1(f, i);
-            gameState.level = 0;
+            gameState.level = -1;
         }
 
         if(gameState.level == 2){
             currentLevel = new Level2(f, i);
-            gameState.level = 0;
+            gameState.level = -1;
+        }
+        if(gameState.level == 4){
+            currentLevel = new Inn(f, i);
+            gameState.level = -1;
         }
 
             currentLevel.paintComponent(g);

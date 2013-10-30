@@ -8,8 +8,6 @@ package com.Bench3.myGame;
  * To change this template use File | Settings | File Templates.
  */
 public class gameState {
-    public static int level = 1;
-    public static int j = 0;
-    public static boolean drawBG = false;
+    public static int level = 4;
     public static int BLOCK_SIZE = 32;
 }

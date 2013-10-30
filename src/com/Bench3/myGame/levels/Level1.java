@@ -10,7 +10,7 @@ import java.awt.event.*;
 
 public class Level1 extends BaseLevel {
     public Rectangle character, battleChar;
-    public Rectangle leftWall, bottomWall, rightWall1, topDoor;
+    public Rectangle leftWall, bottomWall, rightWall1, topDoor, topDoorTrigger;
     public Rectangle hallwayTop, nub1, nub2, hallwayNub1, hallwayNub2, hallwayNub3, hallwayNub4, hallwayNub5, hallwayNub6, hallwayNub7;
     public Rectangle t1Top, t1Bottom, t1Back, t1Trigger; //treasure 1 walls
     public Rectangle t2Top, t2Bottom, t2Back, t2Trigger; //treasure 2 walls
@@ -57,6 +57,7 @@ public class Level1 extends BaseLevel {
         battleChar = new Rectangle(235, 225, 32, 32);
         //Declare Rectangles        X    Y    W    H
         topDoor = new Rectangle(20, 82, 75, 1);
+        topDoorTrigger = new Rectangle(45, 82, 26, 1);
         leftWall = new Rectangle(21, 0, 1, 238);
         bottomWall = new Rectangle(0, 238, 320, 1);
         rightWall1 = new Rectangle(95, 0, 1, 215);
@@ -686,22 +687,11 @@ public class Level1 extends BaseLevel {
     @Override
     public void paintComponent(Graphics g) {
 
-            if(gameState.level ==1)
-            gameState.level = 2;
+          //  if(gameState.level ==1)
+          //  gameState.level = 2;
 
-            //Draws BG image based on level
-            if (level == 1) {
                drawBG(g);
-               //g.drawImage(Main.f.i.lvl1, 0, 0, 800, 600, null);
-               //g.drawImage(Main.f.i.lvl1, 0, 0, 50, 50, 0, 0, 50, 50, null);
 
-            }
-            if (level == 2) {
-                g.drawImage(Main.f.i.lvl2, 0, 0, 800, 600, null);
-            }
-            if (level == 3) {
-                g.drawImage(Main.f.i.lvl1, 0, 0, 800, 600, null);
-            }
 
             g.setColor(Color.WHITE);
 
@@ -803,6 +793,11 @@ public class Level1 extends BaseLevel {
             if (t4Trigger.contains(pt1) || t4Trigger.contains(pt2)) {
                 up = false;
                 collision = true;
+            }
+            if (topDoorTrigger.contains(pt1) || topDoorTrigger.contains(pt2)) {
+                up = false;
+                collision = true;
+                gameState.level = 0;
             }
 
 
@@ -1021,12 +1016,12 @@ public class Level1 extends BaseLevel {
 //			character.y--;
 
 
-
-	    //************************
+         //************************
         //* DRAW INVISIBLE WALLS *
         //************************
         /*
 		g.fillRect(topDoor.x, topDoor.y, topDoor.width, topDoor.height);
+		g.fillRect(topDoorTrigger.x, topDoorTrigger.y, topDoorTrigger.width, topDoorTrigger.height);
 		g.fillRect(leftWall.x, leftWall.y, leftWall.width, leftWall.height);
 		g.fillRect(bottomWall.x, bottomWall.y, bottomWall.width, bottomWall.height);
 		g.fillRect(rightWall1.x, rightWall1.y, rightWall1.width, rightWall1.height);
