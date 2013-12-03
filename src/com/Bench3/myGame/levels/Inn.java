@@ -122,6 +122,10 @@ public class Inn extends BaseLevel{
             }
         }
 
+        for(int i=4; i<21; i++){
+            drawDecoWall(g, i, 2);
+        }
+
 
 
 
@@ -192,7 +196,10 @@ public class Inn extends BaseLevel{
 
     public void drawWoodFloor2(Graphics g, int x, int y){
         g.drawImage(Main.f.i.tileset, ((x)*32),     ((y)*32),   ((x)+1)*32,     ((y)+1)*32, pixCo.WOOD_FLOOR2_TOP_X.value, pixCo.WOOD_FLOOR2_TOP_Y.value, pixCo.WOOD_FLOOR2_BOTTOM_X.value, pixCo.WOOD_FLOOR2_BOTTOM_Y.value, null);
+    }
 
+    public void drawDecoWall(Graphics g, int x, int y){
+        g.drawImage(Main.f.i.tileset, ((x)*32),     ((y)*32),   ((x)+1)*32,     ((y)+1)*32, pixCo.DECO_WALL_TOP_X.value, pixCo.DECO_WALL_TOP_Y.value, pixCo.DECO_WALL_BOTTOM_X.value, pixCo.DECO_WALL_BOTTOM_Y.value, null);
     }
 
     @Override

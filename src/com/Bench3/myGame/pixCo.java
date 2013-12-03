@@ -73,6 +73,16 @@ public enum pixCo {
     STONE_WALL_HEIGHT(64),
 
 
+
+    DECO_WALL_TOP_X(648),
+    DECO_WALL_TOP_Y(255),
+    DECO_WALL_BOTTOM_X(698),
+    DECO_WALL_BOTTOM_Y(320),
+    DECO_WALL_WIDTH(32),
+    DECO_WALL_HEIGHT(32),
+
+
+
     //**************
     //** ROOFTOPS **
     //**************

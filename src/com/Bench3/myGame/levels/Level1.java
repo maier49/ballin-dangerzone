@@ -39,11 +39,13 @@ public class Level1 extends BaseLevel {
 
     public boolean collision, right, fightMenu, itemMenu, magicMenu, fightMenu2, cursorMove, dragonKilled, m1Dead, m2Dead, m3Dead, m4Dead, p1Dead, p2Dead, p3Dead, p4Dead, inBattle, left, up, down, bRight, bLeft, bUp, bDown, drawUp, drawDown, drawLeft, drawRight, drag, jumping, mouseActive = false;
     public Point mouse;
+    public boolean soundStart = true;
 
 
     public Level1(Display f, Images i) {
 
         select = 0;
+
         //TILE HEIGHT = 22
         //TILE WIDTH  = 26
         if(gameState.level == 1){
@@ -421,9 +423,7 @@ public class Level1 extends BaseLevel {
     }
     @Override
     public void battle(Graphics g) {
-
         g.drawImage(Main.f.i.battleBg1, 144, 144, 512, 312, null);
-
 
 
         if (!m1Dead) {
@@ -689,7 +689,11 @@ public class Level1 extends BaseLevel {
 
           //  if(gameState.level ==1)
           //  gameState.level = 2;
-
+        Sound gameSound = new Sound();
+        if(soundStart == true){
+        gameSound.music();
+        soundStart = false;
+        }
                drawBG(g);
 
 
