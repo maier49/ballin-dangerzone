@@ -3,6 +3,7 @@ package com.Bench3.myGame.levels;
 
 import com.Bench3.myGame.*;
 import com.Bench3.myGame.gameState;
+import com.Bench3.myGame.Sound;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -690,10 +691,16 @@ public class Level1 extends BaseLevel {
           //  if(gameState.level ==1)
           //  gameState.level = 2;
         Sound gameSound = new Sound();
-        if(soundStart == true){
-        gameSound.music();
-        soundStart = false;
+        //if(soundStart){
+        //gameSound.music(true, "blah");
+       // soundStart = false;
+       // }
+
+        if(soundStart){
+            gameSound.track("src/sound/Avalanche.wav");
+            soundStart = false;
         }
+
                drawBG(g);
 
 
@@ -801,6 +808,7 @@ public class Level1 extends BaseLevel {
             if (topDoorTrigger.contains(pt1) || topDoorTrigger.contains(pt2)) {
                 up = false;
                 collision = true;
+                gameSound.music(false, "blah");
                 gameState.level = 0;
             }
 
@@ -914,6 +922,7 @@ public class Level1 extends BaseLevel {
             if (stairsBottom.contains(pt4) || stairsBottom.contains(pt3)) {
                 down = false;
                 collision = true;
+                gameSound.music(false, "blah");
                 gameState.level = 2;
                 System.out.println(gameState.level);
             }
